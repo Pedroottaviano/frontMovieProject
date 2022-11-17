@@ -86,8 +86,6 @@ const MovieManagerFrontApp = {
                 .get(BASE_URL + "/all")
                 .then( response => {
                     this.movies = response.data
-                    console.log(BASE_URL + "/all")
-                    console.log(response.data)
                     this.movies.forEach(movie => {
                         movie.active = false
                     });
@@ -102,7 +100,7 @@ const MovieManagerFrontApp = {
         },
         addMovie: function(){
             axios
-                .post(BASE_URL + "/add", this.newMovie)
+                .post(BASE_URL + "/addMovie", this.newMovie)
                 .then(response => {
                     console.log(response.data)
                 })
