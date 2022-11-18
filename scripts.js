@@ -76,6 +76,7 @@ const MovieManagerFrontApp = {
         return {
             movies: [],
             newMovie: {},
+            updatedMovie: {},
             showAddForm: false,
             showUpdateForm: false
         }
@@ -95,6 +96,10 @@ const MovieManagerFrontApp = {
         toggleShowAddForm: function(){
             this.showAddForm = !this.showAddForm
         },
+        toggleShowUpdateForm: function(){
+            this.showUpdateForm = !this.showUpdateForm
+            console.log(this.showUpdateForm)
+        },
         toggleActive: function(item){
             item.active = !item.active;
         },
@@ -111,9 +116,14 @@ const MovieManagerFrontApp = {
             axios
                 .delete(BASE_URL + `/delete/${id}`)
                 .catch(e => console.log(e))
-        }, updateMovie: function(){
-            console.log(this.showUpdateForm);
-            this.showUpdateForm = !this.showUpdateForm
+        }, updateMovie: function(movieId){
+            axios 
+                .put(BASE_URL +  `/updateMovie/${movieId}`, this.updatedMovie)
+                .then(response => {
+                    console.log(response.data)
+                })
+                .catch(e=> console.log(e))
+                this.showUpdateForm = !this.showUpdateForm
         }
     }
 }
